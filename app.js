@@ -1,7 +1,7 @@
-
 const express = require('express');
 const app = express();
 const data = require('./db.json');
+const port = 3000; 
 
 app.use(express.json());
 
@@ -16,6 +16,10 @@ app.get('/users/:id', (req, res) => {
   } else {
     res.status(404).json({ error: 'User not found' });
   }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`); 
 });
 
 module.exports = app;
