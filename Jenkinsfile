@@ -10,14 +10,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
 
         stage('Ejecutar pruebas') {
             steps {
-                bat 'npm test'
+                bat 'npm test > REPORT.md'
             }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'REPORT.md', fingerprint: true
         }
     }
 }
