@@ -1,8 +1,11 @@
-
 const request = require('supertest');
-const app = require('../app');
+const { app, server } = require('../app');
 
 describe('API Tests', () => {
+  afterAll(() => {
+    server.close(); // <--- cierra el servidor después de las pruebas
+  });
+
   it('should return a list of users', async () => {
     const res = await request(app).get('/users');
     expect(res.statusCode).toEqual(200);

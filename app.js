@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const data = require('./db.json');
-const port = 3000; 
+const port = 3000;
 
 app.use(express.json());
 
@@ -18,8 +18,8 @@ app.get('/users/:id', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`); 
+const server = app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+module.exports = { app, server }; // <--- exporta también el servidor
